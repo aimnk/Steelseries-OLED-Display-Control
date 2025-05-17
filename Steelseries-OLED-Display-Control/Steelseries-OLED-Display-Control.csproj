@@ -1,0 +1,26 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <OutputType>Exe</OutputType>
+        <TargetFramework>net8.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <PackageReference Include="HidSharp" Version="2.1.0" />
+      <PackageReference Include="SkiaSharp" Version="3.119.0" />
+      <PackageReference Include="SkiaSharp.NativeAssets.macOS" Version="3.119.0" />
+      <PackageReference Include="System.Reactive" Version="6.0.1" />
+    </ItemGroup>
+<ItemGroup>
+  <NativeLibrary Include="runtimes/osx/native/libhidapi.dylib">
+    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+  </NativeLibrary>
+</ItemGroup>
+<ItemGroup>
+  <Content Include="runtimes/osx/native/libsteelseries.dylib">
+    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+  </Content>
+</ItemGroup>
+</Project>

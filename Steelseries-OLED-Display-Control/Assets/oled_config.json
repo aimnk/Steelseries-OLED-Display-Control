@@ -1,0 +1,13 @@
+{
+  "BrightnessLevel": "Min",
+  "FrameDelayMs": 5000,
+  "AfkTimeoutMinutes": 5,
+  "WakeupThresholdMinutes": 1,
+ "Widgets": [
+  { "type": "Logo", "params": {"icon": "Assets/logo.png"} },
+  { "type": "Clock" },
+  { "type": "Weather", "params": { "lat": "55.755864", "lon": "37.617698" } },
+  { "type": "IconText", "params": {"text": "Hello world!","icon": "Assets/logo.png", "fontSize": "12"} }
+]
+}
+

@@ -6,9 +6,11 @@ public class Utils
 {
     public static SKBitmap LoadBitmap(string path)
     {
+        if (!File.Exists(path)) throw new FileNotFoundException(path);
         using var stream = File.OpenRead(path);
-        return SKBitmap.Decode(stream);
+        return SKBitmap.Decode(stream); // важно
     }
+
     
     public enum ContentAlignment
     {

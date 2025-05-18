@@ -1,4 +1,5 @@
-﻿using System.Text.Json;
+﻿using System.Runtime.InteropServices;
+using System.Text.Json;
 using HidSharp;
 using SteelseriesOledControl.Core;
 
@@ -6,7 +7,7 @@ class Program
 {
     private static readonly string AssetsOledConfigJson =
         Path.Combine(AppContext.BaseDirectory, "Assets", "oled_config.json");
-
+    
     static void Main(string[] args)
     {
         var configPath = Path.Combine(AppContext.BaseDirectory, "Assets", "oled_config.json");
@@ -19,14 +20,15 @@ class Program
             });
 
         Console.WriteLine("[OLED] Запуск. Ожидание подключения устройства...");
-
+        
         while (true)
         {
             try
             {
                 var device = DeviceList.Local.GetHidDevices(0x1038, 0x12E0)
-                    .FirstOrDefault(d => d.ProductName.Contains("Nova"));
-
+                    .Where(d => d.GetMaxFeatureReportLength() >= 512) // OLED обычно 1024+
+                    .FirstOrDefault();
+                
                 if (device == null)
                 {
                     Console.WriteLine("[OLED] Устройство не найдено. Повтор через 3 секунды...");
